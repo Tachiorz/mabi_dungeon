@@ -746,7 +746,7 @@ class DungeonFloorStructure(object):
                 self.pos.x = mt.extract_number() % self.width
                 self.pos.y = mt.extract_number() % self.height
                 free = self.maze_generator.isFree(self.pos)
-        if not self.IsLastFloor:
+        if not self.IsLastFloor and not self.HasBossRoom:
             rnd_dir = RandomDirection()
             while True:
                 direction = rnd_dir.getDirection(mt)
@@ -767,7 +767,7 @@ class DungeonStructure(object):
     floors = []
 
     def __init__(self, dungeon_class, instance_id, item_id, option, seed, floorplan):
-        s_dungeon_class = load_dungeon_class(dungeon_class)
+        s_dungeon_class = load_dungeon_class(dungeon_class.lower())
         self.seed = seed
         self.item_id = item_id
         self.floorplan = floorplan
